@@ -6,11 +6,12 @@ using UnityEngine.UI;
 
 public class Counter : MonoBehaviour
 {
+    public GameManager uiManagerScript;
+
     public Text CounterText;
+    public int Count = 0;
 
-    private int Count = 0;
-
-    private void Start()
+    void Start()
     {
         Count = 0;
     }
@@ -19,5 +20,16 @@ public class Counter : MonoBehaviour
     {
         Count += 1;
         CounterText.text = "Count : " + Count;
+        other.gameObject.SetActive(false);
+    }
+
+    void Update()
+    {
+        if (Count == -1)
+        {
+            Debug.Log("Game Over!");
+            uiManagerScript.GameOver();
+        }
+
     }
 }
