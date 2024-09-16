@@ -29,6 +29,7 @@ public class Counter : MonoBehaviour
         {
             Debug.Log("Game Over!");
             uiManagerScript.GameOver();
+            Count = 0;
         }
 
     }

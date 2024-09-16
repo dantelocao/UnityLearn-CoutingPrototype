@@ -43,4 +43,18 @@ public class ObjectPooler : MonoBehaviour
         return null;
     }
 
+    public void ResetGameObjects()
+    {
+        // For as many objects as are in the pooledObjects list
+        for (int i = 0; i < pooledObjects.Count; i++)
+        {
+            // if the pooled objects is active 
+            if (pooledObjects[i].activeInHierarchy)
+            {
+                pooledObjects[i].SetActive(false);
+            }
+        }
+
+    }
+
 }

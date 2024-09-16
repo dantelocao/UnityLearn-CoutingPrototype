@@ -28,6 +28,8 @@ public class GameManager: MonoBehaviour
 
     public void StartGame(int difficulty)
     {
+        delay = 8f;
+        ObjectPooler.SharedInstance.ResetGameObjects();
         delay = delay/difficulty;
         isGameActive = true;
         titleScreen.SetActive(false);
@@ -37,18 +39,17 @@ public class GameManager: MonoBehaviour
 
     public void GameOver()
     {
+        CancelInvoke();
         isGameActive = false;
         titleScreen.SetActive(true);
     }
 
     public void InvokeSpheres()
     {
-        Debug.Log("teste");
         // Get an object object from the pool
         GameObject pooledProjectile = ObjectPooler.SharedInstance.GetPooledObject();
         if (pooledProjectile != null)
         {
-            Debug.Log("teste2");
             pooledProjectile.SetActive(true); // activate it
             pooledProjectile.transform.position = new Vector3(0, yPos, Random.Range(-zPos, zPos));
         }
